@@ -1,13 +1,15 @@
 export function openPopup(popup) {
-  popup.classList.add("popup_is-opened");
+  popup.classList.add("popup_is-animated");
+  setTimeout(() => popup.classList.add("popup_is-opened"), 100);
   document.addEventListener("keydown", handleCLosePopupByEsc);
   popup.addEventListener("click", closePopupOverlay);
 }
 
 export function closePopup(popup) {
-  popup.classList.remove("popup_is-opened");
+  setTimeout(() => popup.classList.remove("popup_is-animated"), 600);
   document.removeEventListener("keydown", handleCLosePopupByEsc);
   popup.removeEventListener("click", closePopupOverlay);
+  popup.classList.remove("popup_is-opened");
 }
 
 export function handleCLosePopupByEsc(evt) {

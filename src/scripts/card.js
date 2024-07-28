@@ -1,3 +1,5 @@
+import { openPopup } from "./modal";
+
 export function createCard(cardData, removeCard) {
   const cardTemplate = document.querySelector("#card-template").content;
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
@@ -10,6 +12,15 @@ export function createCard(cardData, removeCard) {
   const likeButton = cardElement.querySelector(".card__like-button");
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_is-active");
+  });
+  const popupImageOpen = document.querySelector(".popup_type_image");
+  const popupImage = document.querySelector(".popup__image");
+  const popupText = document.querySelector(".popup__caption");
+  cardImage.addEventListener("click", () => {
+    popupImage.src = cardData.link;
+    popupImage.alt = cardData.name;
+    popupText.textContent = cardData.name;
+    openPopup(popupImageOpen);
   });
   return cardElement;
 }

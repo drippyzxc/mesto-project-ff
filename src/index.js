@@ -15,8 +15,6 @@ const popup = document.querySelector(".popup");
 const editProfilePopup = document.querySelector(".popup_type_edit");
 const newCardPopup = document.querySelector(".popup_type_new-card");
 const popupImageOpen = document.querySelector(".popup_type_image");
-const popupImage = document.querySelector(".popup__image");
-const popupText = document.querySelector(".popup__caption");
 const editProfileOpenButton = document.querySelector(".profile__edit-button");
 const newCardOpenButton = document.querySelector(".new-card-button");
 const closePopupButtons = document.querySelectorAll(".popup__close");
@@ -33,6 +31,9 @@ const addButton = document.querySelector(".profile__add-button");
 const closePopupButton = document.querySelector(".popup__close");
 const buttonCloseNewCardPopup = document
   .querySelector(".popup_type_new-card")
+  .querySelector(".popup__close");
+const buttonCloseImage = document
+  .querySelector(".popup_type_image")
   .querySelector(".popup__close");
 const formElement = document.querySelector(".popup__form");
 const nameInput = formElement.querySelector(".popup__input_type_name");
@@ -52,19 +53,11 @@ function handleEditProfileClickOrSubmit(evt) {
   } else if (evt.type === "submit") {
     evt.preventDefault();
     console.log("Форма отправлена");
-    openPopup(editProfilePopup);
   }
 }
 
 editProfileOpenButton.addEventListener("click", handleEditProfileClickOrSubmit);
 editProfileForm.addEventListener("submit", handleEditProfileClickOrSubmit);
-
-function openImage(cardData) {
-  popupImage.src = cardData.link;
-  popupImage.alt = cardData.name;
-  popupText.textContent = cardData.name;
-  openPopup(popupImageOpen);
-}
 
 addButton.addEventListener("click", function () {
   openPopup(newCardPopup);
@@ -76,6 +69,10 @@ closePopupButton.addEventListener("click", function () {
 
 buttonCloseNewCardPopup.addEventListener("click", function () {
   closePopup(newCardPopup);
+});
+
+buttonCloseImage.addEventListener("click", function () {
+  closePopup(popupImageOpen);
 });
 
 function likeCard(evt) {
@@ -100,7 +97,7 @@ function handleNewCardFormSubmit(evt) {
   const newCardElement = createCard(
     newCardData,
     removeCard,
-    openImage,
+    popupImageOpen,
     likeCard
   );
   placesList.prepend(newCardElement);
