@@ -1,5 +1,5 @@
 import "./pages/index.css";
-import { createCard, removeCard } from "./scripts/card.js";
+import { createCard, removeCard, handleLikeCard } from "./scripts/card.js";
 import { initialCards } from "./scripts/cards.js";
 import {
   openPopup,
@@ -15,6 +15,8 @@ const popup = document.querySelector(".popup");
 const editProfilePopup = document.querySelector(".popup_type_edit");
 const newCardPopup = document.querySelector(".popup_type_new-card");
 const popupImageOpen = document.querySelector(".popup_type_image");
+const popupImage = popupImageOpen.querySelector(".popup__image");
+const popupText = popupImageOpen.querySelector(".popup__caption");
 const editProfileOpenButton = document.querySelector(".profile__edit-button");
 const newCardOpenButton = document.querySelector(".new-card-button");
 const closePopupButtons = document.querySelectorAll(".popup__close");
@@ -47,17 +49,32 @@ function renderInitialCards() {
 
 renderInitialCards();
 
-function handleEditProfileClickOrSubmit(evt) {
-  if (evt.type === "click") {
-    openPopup(editProfilePopup);
-  } else if (evt.type === "submit") {
-    evt.preventDefault();
-    console.log("Форма отправлена");
-  }
+function handleEditProfileClick() {
+  nameInput.value = profileTitle.textContent;
+  jobInput.value = profileDescription.textContent;
+  openPopup(editProfilePopup);
 }
 
-editProfileOpenButton.addEventListener("click", handleEditProfileClickOrSubmit);
-editProfileForm.addEventListener("submit", handleEditProfileClickOrSubmit);
+function handleEditProfileSubmit(evt) {
+  evt.preventDefault();
+  console.log("Форма отправлена");
+}
+
+editProfileOpenButton.addEventListener("click", handleEditProfileClick);
+editProfileForm.addEventListener("submit", handleEditProfileSubmit);
+
+document.addEventListener("click", function (evt) {
+  if (evt.target.classList.contains("card__image")) {
+    openImage(evt);
+  }
+});
+
+function openImage(evt) {
+  popupImage.src = evt.target.src;
+  popupImage.alt = evt.target.alt;
+  popupText.textContent = evt.target.alt;
+  openPopup(popupImageOpen);
+}
 
 addButton.addEventListener("click", function () {
   openPopup(newCardPopup);
@@ -79,7 +96,7 @@ function likeCard(evt) {
   evt.target.classList.toggle("card__like-button_is-active");
 }
 
-function handleFormSubmit(evt) {
+function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
   const nameValue = nameInput.value;
   const jobValue = jobInput.value;
@@ -97,7 +114,7 @@ function handleNewCardFormSubmit(evt) {
   const newCardElement = createCard(
     newCardData,
     removeCard,
-    popupImageOpen,
+    openImage,
     likeCard
   );
   placesList.prepend(newCardElement);
@@ -105,5 +122,5 @@ function handleNewCardFormSubmit(evt) {
   newCardForm.reset();
 }
 
-formElement.addEventListener("submit", handleFormSubmit);
+formElement.addEventListener("submit", handleEditProfileFormSubmit);
 newCardForm.addEventListener("submit", handleNewCardFormSubmit);

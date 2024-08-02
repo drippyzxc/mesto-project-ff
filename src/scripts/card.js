@@ -8,22 +8,14 @@ export function createCard(cardData, removeCard) {
   const deleteButton = cardElement.querySelector(".card__delete-button");
   deleteButton.addEventListener("click", () => removeCard(cardElement));
   const likeButton = cardElement.querySelector(".card__like-button");
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_is-active");
-  });
-  const popupImageOpen = document.querySelector(".popup_type_image");
-  const popupImage = document.querySelector(".popup__image");
-  const popupText = document.querySelector(".popup__caption");
-  cardImage.addEventListener("click", () => {
-    popupImage.src = cardData.link;
-    popupImage.alt = cardData.name;
-    popupText.textContent = cardData.name;
-    openPopup(popupImageOpen);
-  });
+  likeButton.addEventListener("click", handleLikeCard);
   return cardElement;
 }
+
+export function handleLikeCard(evt) {
+  evt.target.classList.toggle("card__like-button_is-active");
+}
+
 export function removeCard(cardElement) {
   cardElement.remove();
 }
-
-export function likeCard() {}
