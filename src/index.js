@@ -36,9 +36,7 @@ const jobInput = formElement.querySelector(".popup__input_type_description");
 
 function renderInitialCards() {
   initialCards.forEach((cardData) => {
-    placesList.append(
-      createCard(cardData, removeCard, openImage, handleLikeCard)
-    );
+    placesList.append(createCard(cardData, removeCard, openImage));
   });
 }
 
