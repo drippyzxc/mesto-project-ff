@@ -1,5 +1,5 @@
 import { deleteLike, setLike } from "./api.js";
-import { popupImageOpen, popupImage, popupText } from "./variables.js";
+import { popupImageOpen, popupImage, popupImageCaption } from "./variables.js";
 
 export function createCard(cardData, callbacksObject, userId) {
   const { deleteCardCallback, openImageCallback, handleLikesCallback } =
@@ -32,7 +32,7 @@ export function createCard(cardData, callbacksObject, userId) {
   });
 
   cardImage.addEventListener("click", () => {
-    openImageCallback(cardImage, popupImage, popupText, popupImageOpen);
+    openImageCallback(cardImage, popupImage, popupImageCaption, popupImageOpen);
   });
 
   return cardElement;

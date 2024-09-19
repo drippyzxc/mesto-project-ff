@@ -1,12 +1,3 @@
-export const validationSettings = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
-
 const showInputError = (
   formElement,
   inputElement,
@@ -24,6 +15,7 @@ const hideInputError = (formElement, inputElement, validationSettings) => {
   inputElement.classList.remove(validationSettings.inputErrorClass);
   errorElement.classList.remove(validationSettings.errorClass);
   errorElement.textContent = "";
+  inputElement.setCustomValidity("");
 };
 
 const isValid = (formElement, inputElement, validationSettings) => {
@@ -86,9 +78,7 @@ export const enableValidation = (validationSettings) => {
     document.querySelectorAll(validationSettings.formSelector)
   );
   formList.forEach((formElement) => {
-    formElement.addEventListener("submit", function (evt) {
-      evt.preventDefault();
-    });
+    formElement.addEventListener("submit", function (evt) {});
     setEventListeners(formElement, validationSettings);
   });
 };
@@ -103,6 +93,7 @@ export const clearValidation = (formElement, validationSettings) => {
   inputList.forEach((inputElement, validationSettings) => {
     hideInputError(formElement, inputElement, validationSettings);
     inputElement.value = "";
+    inputElement.setCustomValidity("");
   });
   disabledButton(buttonElement, validationSettings);
 };

@@ -4,7 +4,8 @@ export const editProfilePopup = document.querySelector(".popup_type_edit");
 export const newCardPopup = document.querySelector(".popup_type_new-card");
 export const popupImageOpen = document.querySelector(".popup_type_image");
 export const popupImage = popupImageOpen.querySelector(".popup__image");
-export const popupText = popupImageOpen.querySelector(".popup__caption");
+export const popupImageCaption =
+  popupImageOpen.querySelector(".popup__caption");
 export const editProfileOpenButton = document.querySelector(
   ".profile__edit-button"
 );
@@ -20,7 +21,7 @@ export const nameInput = document.querySelector(".popup__input_type_name");
 export const jobInput = document.querySelector(
   ".popup__input_type_description"
 );
-export const closePopupButton = document.querySelectorAll(".popup__close");
+export const closePopupButtons = document.querySelectorAll(".popup__close");
 export const editProfileForm = document.forms["edit-profile"];
 export const newPlaceForm = document.forms["new-place"];
 export const editAvatarElement = document.forms["edit-avatar"];

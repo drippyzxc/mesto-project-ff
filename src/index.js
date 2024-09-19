@@ -14,13 +14,9 @@ import {
   avatarForm,
   avatarImage,
   deleteCardForm,
-  closePopupButton,
+  closePopupButtons,
 } from "./scripts/variables.js";
-import {
-  enableValidation,
-  clearValidation,
-  validationSettings,
-} from "./scripts/validation.js";
+import { enableValidation, clearValidation } from "./scripts/validation.js";
 import { getUserInfo, getCards } from "./scripts/api.js";
 import {
   handleCardDelete,
@@ -33,13 +29,22 @@ import {
   handleEditProfileClick,
 } from "./scripts/forms/formEdit.js";
 
-enableValidation(validationSettings);
-
 const callbacksObject = {
   deleteCardCallback: openPopupDelete,
   openImageCallback: openImage,
   handleLikesCallback: handleLikeCard,
 };
+
+const validationSettings = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
+
+enableValidation(validationSettings);
 
 function renderInitialCards(initialCards, callbacksObject, userId) {
   placesList.innerHTML = "";
@@ -49,10 +54,10 @@ function renderInitialCards(initialCards, callbacksObject, userId) {
   });
 }
 
-function openImage(cardImg, popupImage, popupText, popupImageOpen) {
+function openImage(cardImg, popupImage, popupImageCaption, popupImageOpen) {
   popupImage.src = cardImg.src;
   popupImage.alt = cardImg.alt;
-  popupText.textContent = cardImg.alt;
+  popupImageCaption.textContent = cardImg.alt;
   openPopup(popupImageOpen);
 }
 
@@ -72,7 +77,7 @@ avatarImage.addEventListener("click", () => {
   openPopup(avatarForm);
 });
 
-closePopupButton.forEach((evt) => {
+closePopupButtons.forEach((evt) => {
   const popup = evt.closest(".popup");
   evt.addEventListener("click", () => {
     closePopup(popup);
