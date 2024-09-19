@@ -1,13 +1,9 @@
-<<<<<<< HEAD
 import { deleteLike, setLike } from "./api.js";
 import { popupImageOpen, popupImage, popupText } from "./variables.js";
 
 export function createCard(cardData, callbacksObject, userId) {
   const { deleteCardCallback, openImageCallback, handleLikesCallback } =
     callbacksObject;
-=======
-export function createCard(cardData, removeCard, openImage) {
->>>>>>> 3064162b4ea692adbd80a9c07f3b8b184540a276
   const cardTemplate = document.querySelector("#card-template").content;
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
@@ -16,7 +12,6 @@ export function createCard(cardData, removeCard, openImage) {
   const cardLikeCounter = cardElement.querySelector(".card__like-counter");
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
-<<<<<<< HEAD
   cardTitle.textContent = cardData.name;
   cardLikeCounter.textContent = cardData.likes.length;
   const deleteButton = cardElement.querySelector(".card__delete-button");
@@ -69,21 +64,4 @@ export function handleLikeCard(cardLikeCounter, likeButton, cardData) {
         );
       });
   }
-=======
-
-  const deleteButton = cardElement.querySelector(".card__delete-button");
-  deleteButton.addEventListener("click", () => removeCard(cardElement));
-  const likeButton = cardElement.querySelector(".card__like-button");
-  likeButton.addEventListener("click", handleLikeCard);
-  cardImage.addEventListener("click", openImage);
-  return cardElement;
-}
-
-export function handleLikeCard(evt) {
-  evt.target.classList.toggle("card__like-button_is-active");
-}
-
-export function removeCard(cardElement) {
-  cardElement.remove();
->>>>>>> 3064162b4ea692adbd80a9c07f3b8b184540a276
 }
