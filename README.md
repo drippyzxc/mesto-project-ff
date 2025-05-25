@@ -2,7 +2,7 @@
 <h1>Yandex Project - mesto-project-ff
 </h1>
 <a href="https://drippyzxc.github.io/stellar-burgers/">
-<img src="https://github.com/drippyzxc/appslogo/blob/main/Screenshot_23-May_17-57-22_22639.png">
+<img src="https://github.com/drippyzxc/appslogo/blob/main/mesto-logo.png">
 </img>
 </a>
 </div>
