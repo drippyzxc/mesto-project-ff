@@ -7,7 +7,3 @@
 </a>
 </div>
 <hr>
-
-https://github.com/drippyzxc/mesto-project-ff
-
-[GitHub Pages URL для текущей версии проекта](https://drippyzxc.github.io/mesto-project-ff/)
