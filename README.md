@@ -8,7 +8,7 @@
 </div>
 <hr>
 
-The mesto-project-ff project is a full-fledged interface application that does not include adding cards, likes, changing avatars and names. There is also the option to open pop-up cards in full screen to fully enjoy the beauty of the landscape.
+The mesto-project-ff project is a full-fledged interface application that does not include adding/removing cards, likes, changing avatars and names. It is also possible to open pop-up cards in full screen to fully enjoy the beauty of the landscape.
 
 ## Implementation
 
